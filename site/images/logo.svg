@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" width="220" height="80" role="img" aria-label="99SW">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#3d8bff"/>
+      <stop offset="1" stop-color="#6fd3ff"/>
+    </linearGradient>
+  </defs>
+  <text x="110" y="58" text-anchor="middle"
+        font-family="ui-sans-serif, system-ui, Segoe UI, Roboto, Arial, sans-serif"
+        font-size="56" font-weight="800" letter-spacing="2" fill="url(#g)">99SW</text>
+</svg>

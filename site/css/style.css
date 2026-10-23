@@ -1,0 +1,102 @@
+/* ===== Warna (ubah di sini kalau mau ganti nuansa) ===== */
+:root {
+  --bg:        #07142a;   /* biru navy gelap */
+  --bg-2:      #0c2347;
+  --line:      rgba(86, 156, 255, 0.10);  /* garis grid */
+  --text:      #e6efff;
+  --muted:     #8aa4cc;
+  --accent:    #3d8bff;   /* biru teknik */
+  --accent-2:  #6fd3ff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse at 50% 35%, var(--bg-2) 0%, var(--bg) 65%);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Grid halus ala kertas teknik / blueprint */
+.grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%);
+}
+
+.hero {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 20px;
+  gap: 28px;
+}
+
+.logo {
+  width: clamp(150px, 32vw, 240px);
+  height: auto;
+  animation: rise 0.8s ease-out both;
+}
+
+.rule {
+  width: 56px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: rise 0.8s 0.15s ease-out both;
+}
+
+.headline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-weight: 600;
+  font-size: clamp(1.75rem, 5.5vw, 3.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  animation: rise 0.8s 0.3s ease-out both;
+}
+
+.headline .accent {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.footer {
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; }
+}

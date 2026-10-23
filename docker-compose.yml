@@ -1,0 +1,40 @@
+services:
+  web:
+    build: .
+    image: 99subw-web:latest
+    container_name: 99subw-web
+    restart: unless-stopped
+
+    # Keamanan (sama seperti proyek statis lain)
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+    # TIDAK ada "ports:" — semua lewat Traefik
+    networks:
+      - proxy
+
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+
+      # Router: menerima 99subw.com dan www.99subw.com
+      - traefik.http.routers.subw-web.rule=Host(`www.99subw.com`) || Host(`99subw.com`)
+      - traefik.http.routers.subw-web.entrypoints=websecure
+      - traefik.http.routers.subw-web.tls=true
+      - traefik.http.routers.subw-web.tls.certresolver=le
+      - traefik.http.routers.subw-web.middlewares=subw-to-www,secure-headers@file
+      - traefik.http.services.subw-web.loadbalancer.server.port=8080
+
+      # Middleware: redirect permanen 99subw.com -> www.99subw.com
+      - traefik.http.middlewares.subw-to-www.redirectregex.regex=^https?://99subw\.com/(.*)
+      - traefik.http.middlewares.subw-to-www.redirectregex.replacement=https://www.99subw.com/$${1}
+      - traefik.http.middlewares.subw-to-www.redirectregex.permanent=true
+
+networks:
+  proxy:
+    external: true
