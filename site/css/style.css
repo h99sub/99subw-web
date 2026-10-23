@@ -85,11 +85,41 @@ body {
 
 .footer {
   position: relative;
-  padding: 20px;
+  padding: 24px 20px 20px;
   text-align: center;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
   color: var(--muted);
+}
+
+.disclaimer {
+  max-width: 640px;
+  margin: 0 auto 16px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(86, 156, 255, 0.18);
+  font-size: 0.78rem;
+  line-height: 1.65;
+}
+
+.disclaimer strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.disclaimer a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(111, 211, 255, 0.4);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.disclaimer a:hover,
+.disclaimer a:focus-visible {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.copyright {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
 }
 
 @keyframes rise {
